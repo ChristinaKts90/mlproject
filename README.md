@@ -19,3 +19,6 @@ Create a new folder in the drive and use anaconda prompt to open it with vscode 
    9. git push -u origin main
 3. Create .gitignore file in the web and choose the programming language you will use
 4. git pull
+
+## Install requirements
+pip install -r requirements.txt
