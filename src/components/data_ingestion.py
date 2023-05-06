@@ -7,7 +7,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
-#from src.components.data_transformation import
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
 
 @dataclass
 class DataIngestionConfig:
@@ -39,14 +40,17 @@ class DataIngestion:
             train_set.to_csv(self.ingestion_config.train_path, index=False, header=True)
             test_set.to_csv(self.ingestion_config.test_path, index=False, header=True)
             logging.info("Ingestion of the data is completed")
-            
             return(
                 self.ingestion_config.train_path,
-                self.ingestion_config.test_path,
-                self.ingestion_config.raw_path
+                self.ingestion_config.test_path
             )
             
         except Exception as e:
             raise CustomException(e,sys)
         
-    
+if __name__=="__main__":
+    obj = DataIngestion()
+    train_path,test_path = obj.initiate_data_ingestion()
+    target='math score'
+    obj2 = DataTransformation()
+    train_arr,test_arr,preprocessor_obj_file_path = obj2.initiate_data_transformation(train_path,test_path,target)
