@@ -10,6 +10,8 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
+from src.components.model_trainer import ModelTrainer,ModelTrainingConfig
+
 @dataclass
 class DataIngestionConfig:
     logging.info("Setting the data paths")
@@ -47,10 +49,14 @@ class DataIngestion:
             
         except Exception as e:
             raise CustomException(e,sys)
-        
+"""     
 if __name__=="__main__":
     obj = DataIngestion()
     train_path,test_path = obj.initiate_data_ingestion()
     target='math score'
     obj2 = DataTransformation()
-    train_arr,test_arr,preprocessor_obj_file_path = obj2.initiate_data_transformation(train_path,test_path,target)
+    train_array,test_array,preprocessor_obj_file_path = obj2.initiate_data_transformation(train_path,test_path,target)
+    model_obj = ModelTrainer()
+    model_obj.initiate_model_trainer(train_array,test_array)
+    
+"""
